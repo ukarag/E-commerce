@@ -70,13 +70,18 @@ The application is meant to be run in Docker containers using a Docker compose s
    ```
 2. Start the Docker daemon: [https://docs.docker.com/config/daemon/start/](https://docs.docker.com/config/daemon/start/)
    
-3. Build and start the containers
+3. On first start build and start the containers
    ```sh
    docker compose up --build
    ```
-   After building the containers simply run the containers
+   When built images are present simply run the containers
    ```sh
    docker compose up
+   ```
+4. Access the application frontend on local port 8080. A default account is configured:
+   ```
+   username: testuster
+   password: testpassword
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
