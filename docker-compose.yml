@@ -9,7 +9,7 @@ services:
     ports:
       - "8000:8000"  # Expose the backend service on port 8000
     volumes:
-      - ./dbsqlite3:/code/dbsqlite3
+      - ./djackets_django/dbsqlite3:/code/dbsqlite3
 
   frontend:
     build:
