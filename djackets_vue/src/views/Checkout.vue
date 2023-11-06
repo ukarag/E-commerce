@@ -109,7 +109,7 @@
                 <template v-if="cartTotalLength">
                     <hr>
 
-                    <button class="button is-dark" @click="submitForm">Pay with Stripe</button>
+                    <button class="button is-dark" @click="submitForm">Pay</button>
                 </template>
             </div>
         </div>
@@ -126,8 +126,6 @@ export default {
             cart: {
                 items: []
             },
-            stripe: {},
-            card: {},
             first_name: '',
             last_name: '',
             email: '',
@@ -142,14 +140,6 @@ export default {
         document.title = 'Checkout | Djackets'
 
         this.cart = this.$store.state.cart
-
-        if (this.cartTotalLength > 0) {
-            this.stripe = Stripe('pk_test_51H1HiuKBJV2qfWbD2gQe6aqanfw6Eyul5PO2KeOuSRlUMuaV4TxEtaQyzr9DbLITSZweL7XjK3p74swcGYrE2qEX00Hz7GmhMI')
-            const elements = this.stripe.elements();
-            this.card = elements.create('card', { hidePostalCode: true })
-
-            this.card.mount('#card-element')
-        }
     },
     methods: {
         getItemTotal(item) {
@@ -188,21 +178,10 @@ export default {
 
             if (!this.errors.length) {
                 this.$store.commit('setIsLoading', true)
-
-                this.stripe.createToken(this.card).then(result => {                    
-                    if (result.error) {
-                        this.$store.commit('setIsLoading', false)
-
-                        this.errors.push('Something went wrong with Stripe. Please try again')
-
-                        console.log(result.error.message)
-                    } else {
-                        this.stripeTokenHandler(result.token)
-                    }
-                })
+                this.checkoutHandler()
             }
         },
-        async stripeTokenHandler(token) {
+        async checkoutHandler() {
             const items = []
 
             for (let i = 0; i < this.cart.items.length; i++) {
@@ -225,7 +204,6 @@ export default {
                 'place': this.place,
                 'phone': this.phone,
                 'items': items,
-                'stripe_token': token.id
             }
 
             await axios
