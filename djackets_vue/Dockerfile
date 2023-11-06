@@ -1,8 +1,7 @@
 FROM node:16
 WORKDIR /app
-COPY ./djackets_vue /app
-WORKDIR /app/djackets_vue
+COPY package*.json ./
 RUN npm install
-CMD ["npm", "run", "serve"]
-
+COPY . .
+RUN npm run build
 EXPOSE 8080
