@@ -55,8 +55,14 @@ The application is meant to be run in Docker containers using a Docker compose s
    ```
 4. Access the application frontend on local port 8080. A default account is configured:
    ```
-   username: testuster
+   username: testuser
    password: testpassword
+   ```
+
+5. A default admin account is configured (no extra functionality in frontend implemented):
+   ```
+   username: admin
+   password: your_superuser_password
    ```
 
 <!-- LICENSE -->
