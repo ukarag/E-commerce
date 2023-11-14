@@ -26,8 +26,9 @@
 
 <script>
 import axios from 'axios'
-
+import router from '../router'
 import ProductBox from '@/components/ProductBox'
+
 
 export default {
   name: 'Home',
@@ -54,6 +55,10 @@ export default {
           this.latestProducts = response.data
         })
         .catch(error => {
+          if (error.response && error.response.status === 429) {
+            // Redirect to the "TooManyRequests" route
+            router.push({ name: 'TooManyRequests' });
+          }
           console.log(error)
         })
 

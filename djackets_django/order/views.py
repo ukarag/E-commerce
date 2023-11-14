@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.http import Http404
 from django.shortcuts import render
+from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
 
 from rest_framework import status, authentication, permissions
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
@@ -32,6 +33,8 @@ def checkout(request):
 class OrdersList(APIView):
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
+    throttle_classes = [AnonRateThrottle, UserRateThrottle]
+
 
     def get(self, request, format=None):
         orders = Order.objects.filter(user=request.user)
