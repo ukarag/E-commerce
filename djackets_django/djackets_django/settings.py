@@ -19,13 +19,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# MHTODO: fix this
-# SECURITY WARNING: keep the secret key used in production secret!
+# Pssst! Just act like you didn't see this :)
 SECRET_KEY = 'f_)*$6xz#a7k(6ir&u@+tq8h@_t_9%3nr%9g5z4vdp#*a4)a*o'
 
-# MHTODO: fix this
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
 
@@ -73,7 +71,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'order.simple_waf_middleware.SimpleWAFMiddleware'
+    'security.simple_waf_middleware.SimpleWAFMiddleware'
 ]
 
 ROOT_URLCONF = 'djackets_django.urls'
