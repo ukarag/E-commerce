@@ -73,7 +73,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'order.simple_waf_middleware.SimpleWAFMiddleware'
+    'security.simple_waf_middleware.SimpleWAFMiddleware'
 ]
 
 ROOT_URLCONF = 'djackets_django.urls'
